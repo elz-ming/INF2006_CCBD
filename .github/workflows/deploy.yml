@@ -23,5 +23,10 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USER: ${{ secrets.EC2_USER }}
         run: |
-          # Connect to the EC2 instance and update the web directory
-          ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST 'cd /var/www/html && git pull origin main'
+          # Connect to the EC2 instance, install Git if necessary, and update the web directory
+          ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST '
+            sudo yum update -y && \
+            sudo yum install -y git && \
+            cd /var/www/html && \
+            git pull origin main
+          '
