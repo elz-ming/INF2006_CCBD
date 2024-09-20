@@ -27,6 +27,11 @@ jobs:
           ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST '
             sudo yum update -y && \
             sudo yum install -y git && \
+            git config --global --add safe.directory /var/www/html && \
             cd /var/www/html && \
-            git pull origin main
+            if [ ! -d .git ]; then \
+              sudo git clone https://github.com/elz-ming/INF2006_CCBD.git .; \
+            else \
+              sudo git pull origin main; \
+            fi
           '
