@@ -3,7 +3,7 @@ session_start();
 require_once "./configs/dbconnection.php";
 
 
-?>
+?> 
   
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@ require_once "./configs/dbconnection.php";
 
   <title>Real time live voting | CCBD Group 5</title>
   <!-- Favicon -->
-  <link rel="icon" href="../assets/img/brand/favicon.ico" type="image/x-icon>
+  <link rel="icon" href="../assets/img/brand/favicon.ico" type="image/x-icon">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
