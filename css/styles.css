@@ -1,0 +1,115 @@
+/* Import the Inter font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  font-size: 4px;
+  font-family: "Inter", sans-serif;
+  color: #000000; /* Set all text color to white */
+  overflow-x: hidden;
+}
+
+header,
+footer {
+  display: flex;
+  height: 10%;
+  width: 100%;
+  padding: 4rem;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+header {
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  color: #141204;
+}
+
+footer {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  bottom: 0;
+  color: #ebfcfb;
+}
+
+main {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+section {
+  display: flex;
+}
+
+#title {
+  font-size: 10rem;
+}
+
+#logout {
+  width: 10rem;
+  height: 10rem;
+  font-size: 2rem;
+}
+
+#logout button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#footer-title {
+  font-size: 6rem;
+}
+
+#team {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.person {
+  font-size: 4rem;
+}
+
+#background-white,
+#background-red {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Apply the outer gradient */
+#background-red {
+  background: linear-gradient(
+    to right,
+    rgba(234, 115, 141, 1),
+    rgba(204, 49, 61, 1)
+  );
+  z-index: -2;
+}
+
+/* Apply the inner gradient */
+#background-white {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: -1;
+}
