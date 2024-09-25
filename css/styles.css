@@ -15,13 +15,23 @@ html {
   font-size: 4px;
   font-family: "Inter", sans-serif;
   color: #000000; /* Set all text color to white */
-  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header,
 footer {
   display: flex;
-  height: 10%;
+  height: 10vh;
   width: 100%;
   padding: 4rem;
   position: fixed;
@@ -34,6 +44,7 @@ header {
   justify-content: space-between;
   align-items: center;
   top: 0;
+  background-color: #ebfcfb;
   color: #141204;
 }
 
@@ -43,12 +54,16 @@ footer {
   align-items: center;
   gap: 2rem;
   bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(234, 115, 141, 1),
+    rgba(204, 49, 61, 1)
+  );
   color: #ebfcfb;
 }
 
 main {
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  height: 80vh;
 }
 
 section {
@@ -81,6 +96,12 @@ section {
   width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  #team {
+    display: none;
+  }
+}
+
 .person {
   font-size: 4rem;
 }
@@ -108,8 +129,8 @@ section {
 #background-white {
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(255, 255, 255, 1) 10%,
+    rgba(255, 255, 255, 0) 90%
   );
   z-index: -1;
 }
