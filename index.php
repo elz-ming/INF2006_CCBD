@@ -1,6 +1,6 @@
 <?php
-session_start();
-require_once "./configs/dbconnection.php";
+// session_start();
+// require_once "./configs/dbconnection.php";
 
 
 ?> 
@@ -92,7 +92,16 @@ require_once "./configs/dbconnection.php";
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
               <h1 class="text-white">Welcome!</h1>
-              <p class="text-lead text-white">Enter your credentials to start voting</p>
+              <p class="text-lead text-white">Choose your role</p>
+              <div class="drop-down-box">
+              <!-- <p> select your role </p> -->
+                <!-- <label for="role" class="text-white">Choose your role </label> -->
+                <select name="role" id="role" class="form-control" onchange="updatePageContent()">
+                  <option value="admin">Admin</option>
+                  <option value="voter">Voter</option>
+                </select>
+                <br><br>
+              </div>
             </div>
           </div>
         </div>
@@ -108,8 +117,8 @@ require_once "./configs/dbconnection.php";
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
-            
-            <div class="card-body px-lg-5 py-lg-5">
+            <!-- Voter content -->
+            <div id="voter-content">
             <form method="POST" autocomplete="off" autofocus action="">
               <div class="text-center text-muted mb-4">
               <h3>Enter your Voting Credentials</h3>
@@ -119,36 +128,42 @@ require_once "./configs/dbconnection.php";
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
                     </div>
-                    <input class="form-control form-control-md"  name="phonenumber" id="phonenumber"  placeholder="Phone Number" type="number" required>
+                    <input class="form-control form-control-md"  name="Poll ID" id="Poll ID" placeholder=" Poll ID" type="text"required>
                   </div>
                 </div>
+                <div class="text-center">
+                  <button name="sign_in" type="submit" class="btn btn-primary my-4">Vote Now</button>
+                </div>
+            </form>
+            </div>
 
+            <!-- Admin Content -->
+            <div id="admin-content" style="display: none;">
+              <form method="POST" autocomplete="off" action="">
+                <div class="text-center text-muted mb-4">
+                  <h3>Admin Login</h3>
+                </div>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-id-card"></i></span>
                     </div>
-                    <input class="form-control form-control-md"  name="userid" id="userid"  placeholder="Voter/Admin ID" type="text" required>
+                    <input class="form-control form-control-md" name="userid" id="userid" placeholder="Admin ID" type="text" required>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                     </div>
-                    <input class="form-control form-control-md"  name="email" id="email"  placeholder="Email" type="email" required>
+                    <input class="form-control form-control-md" name="email" id="email" placeholder="Email" type="email" required>
                   </div>
                 </div>
-
                 <div class="text-center">
-                  <button name="sign_in"  type="submit" class="btn btn-primary my-4">Vote Now</button>
+                  <button name="sign_in" type="submit" class="btn btn-primary my-4">Log In</button>
                 </div>
-
-
-
               </form>
-
+            </div>
             </div>
           </div>
           
@@ -189,6 +204,27 @@ require_once "./configs/dbconnection.php";
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
+  
+  <!-- JavaScript to handle role change -->
+  <script>
+    function updatePageContent() {
+      const role = document.getElementById("role").value;
+      
+      // Show voter content if voter is selected, admin content if admin is selected
+      if (role === "voter") {
+        document.getElementById("voter-content").style.display = "block";
+        document.getElementById("admin-content").style.display = "none";
+      } else if (role === "admin") {
+        document.getElementById("admin-content").style.display = "block";
+        document.getElementById("voter-content").style.display = "none";
+      }
+    }
+
+    // Call this function on page load to ensure content is hidden initially
+    window.onload = function() {
+      updatePageContent();
+    };
+  </script>
 </body>
 
 </html>
