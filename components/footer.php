@@ -1,6 +1,6 @@
 <footer>
   <section id="footer-title">
-    INF2006_CCBD Group 2
+    INF2006_CCBD Group 3
   </section>
   <section id="team">
     <div class="person">Lin Zhenming</div>
