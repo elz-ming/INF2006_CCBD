@@ -7,7 +7,7 @@ require 'views/poll_page.php';
 <head></head>
 
 <body>
-  This is to test whether the cloud works?
+  <h1>This is to test whether the cloud works?</h1>
 </body>
 
 </html>
