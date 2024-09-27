@@ -13,7 +13,6 @@ try {
 }
 ?>
 
-<!-- test push -->
 <!DOCTYPE html>
 <html>
 
@@ -61,8 +60,8 @@ try {
               </div>
             </div>
             <div class="poll-question"><?= htmlspecialchars($poll['question']) ?>
+            </div>
           </div>
-        </div>
         <?php endforeach; ?>
       <?php else: ?>
         <p>No polls available.</p>
@@ -73,18 +72,18 @@ try {
   include('components/footer.php');
   ?>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const pollRows = document.querySelectorAll('.poll-row');
-    pollRows.forEach(function(row) {
-      row.addEventListener('click', function(event) {
-        event.preventDefault();
-        const pollId = this.getAttribute('data-id');
-        window.location.href = `views/voting_page.php?id=${pollId}`;
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const pollRows = document.querySelectorAll('.poll-row');
+      pollRows.forEach(function (row) {
+        row.addEventListener('click', function (event) {
+          event.preventDefault();
+          const pollId = this.getAttribute('data-id');
+          window.location.href = `views/voting_page.php?id=${pollId}`;
+        });
       });
     });
-  });
-</script>
+  </script>
 </body>
 
 </html>
