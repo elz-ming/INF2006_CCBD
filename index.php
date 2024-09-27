@@ -1,5 +1,13 @@
 <!-- <?php
 require 'views/poll_page.php';
 ?> -->
+<!DOCTYPE html>
+<html>
 
-This is to test whether the cloud works?
+<head></head>
+
+<body>
+  This is to test whether the cloud works?
+</body>
+
+</html>
