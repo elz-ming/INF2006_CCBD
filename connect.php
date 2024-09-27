@@ -1,5 +1,6 @@
 <?php
-// Load environment variables if using .env (ensure the .env file is properly set up)
+// Load environment variables if using .env (ensure the .env file is properly set up
+
 function loadEnv($path)
 {
   if (!file_exists($path)) {
