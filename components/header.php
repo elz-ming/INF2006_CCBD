@@ -1,5 +1,11 @@
 <header>
-  <h1 id="title">Rachel Square</h1>
+  <h1 id="title">Real-time voting website</h1>
+  <!-- <div id="login">
+    <form method="POST" action="/api/login">
+      <input id="login-input" type="text" name="username" placeholder="Username" />
+      <input id="login-input" type="password" name="password" placeholder="Password" />
+      <button id="login-button">Login</button>
+    </form> -->
   <div id="logout">
     <form method="POST" action="/api/logout">
       <button id="logout-button">
