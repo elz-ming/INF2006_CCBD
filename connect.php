@@ -31,8 +31,6 @@ $dbname = getenv('DB_NAME');
 $user = getenv('DB_USER');
 $password = getenv('DB_PASSWORD');
 
-echo $host . $port . $dbname . $user . $password;
-
 try {
   // Create a new PDO instance for PostgreSQL connection
   $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
