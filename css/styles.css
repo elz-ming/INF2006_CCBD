@@ -130,8 +130,8 @@ section {
 #background-white {
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 1) 10%,
-    rgba(255, 255, 255, 0) 90%
+    rgba(235, 252, 251, 1) 10%,
+    rgba(235, 252, 251, 0) 90%
   );
   z-index: -1;
 }
@@ -154,13 +154,12 @@ section {
   padding: 20px;
   font-size: 8em;
   border-radius: 10px;
-
 }
 .answer:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.answer-container{
+.answer-container {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -168,7 +167,10 @@ section {
   flex-wrap: wrap;
 }
 
-.q1, .q2, .q3, .q4 {
+.q1,
+.q2,
+.q3,
+.q4 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -198,8 +200,8 @@ section {
   border-radius: 4px;
 } */
 
-.q-blank{
-  box-shadow:  0 4px 6px 1px rgba(136, 136, 136, 0.062);
+.q-blank {
+  box-shadow: 0 4px 6px 1px rgba(136, 136, 136, 0.062);
   border-radius: 4px;
 }
 
