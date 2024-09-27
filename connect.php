@@ -31,15 +31,15 @@ $dbname = getenv('DB_NAME');
 $user = getenv('DB_USER');
 $password = getenv('DB_PASSWORD');
 
-// try {
-//   // Create a new PDO instance for PostgreSQL connection
-//   $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
-//   $pdo = new PDO($dsn, $user, $password, [
-//     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,  // Enable exceptions on errors
-//     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC  // Fetch data as associative arrays
-//   ]);
-// } catch (PDOException $e) {
-//   // Handle connection errors
-//   die("Database connection failed: " . $e->getMessage());
-// }
+try {
+  // Create a new PDO instance for PostgreSQL connection
+  $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
+  $pdo = new PDO($dsn, $user, $password, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,  // Enable exceptions on errors
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC  // Fetch data as associative arrays
+  ]);
+} catch (PDOException $e) {
+  // Handle connection errors
+  die("Database connection failed: " . $e->getMessage());
+}
 ?>
