@@ -1,5 +1,5 @@
 <?php
-// require 'connect.php'; // Make sure connect.php is correctly set up for your database connection
+require 'connect.php'; // Make sure connect.php is correctly set up for your database connection
 
 // // Fetch poll data from the database
 // try {
