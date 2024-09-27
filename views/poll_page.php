@@ -1,4 +1,5 @@
-<?php require 'connect.php'; // Make sure connect.php is correctly set up for your database connection
+<?php
+// require 'connect.php'; // Make sure connect.php is correctly set up for your database connection
 
 // // Fetch poll data from the database
 // try {
@@ -73,7 +74,7 @@
   include('components/footer.php');
   ?>
 
-  <script>
+  <!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
       const pollRows = document.querySelectorAll('.poll-row');
       pollRows.forEach(function (row) {
@@ -84,7 +85,7 @@
         });
       });
     });
-  </script>
+  </script> -->
 </body>
 
 </html>
