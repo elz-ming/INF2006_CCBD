@@ -1,17 +1,17 @@
 <?php
 require 'connect.php'; // Make sure connect.php is correctly set up for your database connection
 
-// // Fetch poll data from the database
-// try {
-//   // Example query to fetch polls from the database
-//   $query = 'SELECT id, created_at, question FROM polls ORDER BY created_at DESC';
-//   $stmt = $pdo->query($query);
-//   $polls = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// } catch (PDOException $e) {
-//   // Handle any errors
-//   echo "Failed to fetch poll data: " . $e->getMessage();
-//   $polls = []; // Set polls to an empty array if there is an error
-// }
+// Fetch poll data from the database
+try {
+  // Example query to fetch polls from the database
+  $query = 'SELECT id, created_at, question FROM polls ORDER BY created_at DESC';
+  $stmt = $pdo->query($query);
+  $polls = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  // Handle any errors
+  echo "Failed to fetch poll data: " . $e->getMessage();
+  $polls = []; // Set polls to an empty array if there is an error
+}
 ?>
 
 <!-- test push -->
@@ -52,7 +52,7 @@ require 'connect.php'; // Make sure connect.php is correctly set up for your dat
         </svg>
       </button>
     </section>
-    <!-- <section id="poll-display">
+    <section id="poll-display">
       <?php if (!empty($polls)): ?>
         <?php foreach ($polls as $poll): ?>
           <div class="poll-row" id="" data-id="<?= htmlspecialchars($poll['id']) ?>">
@@ -68,13 +68,13 @@ require 'connect.php'; // Make sure connect.php is correctly set up for your dat
       <?php else: ?>
         <p>No polls available.</p>
       <?php endif; ?>
-    </section> -->
+    </section>
   </main>
   <?php
   include('components/footer.php');
   ?>
 
-  <!-- <script>
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
       const pollRows = document.querySelectorAll('.poll-row');
       pollRows.forEach(function (row) {
@@ -85,7 +85,7 @@ require 'connect.php'; // Make sure connect.php is correctly set up for your dat
         });
       });
     });
-  </script> -->
+  </script>
 </body>
 
 </html>
