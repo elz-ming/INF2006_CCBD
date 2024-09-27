@@ -13,7 +13,6 @@ try {
 }
 ?>
 
-<!-- test push -->
 <!DOCTYPE html>
 <html>
 
