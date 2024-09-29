@@ -3,8 +3,21 @@ require_once '../connect.php'; // Make sure connect.php is correctly set up for 
 
 // Fetch poll data from the database
 try {
-  // Example query to fetch polls from the database
-  $query = 'SELECT question, selection1, selection1_count, selection2, selection2_count, selection3, selection3_count, selection4, selection4_count FROM polls';
+  // Query to fetch polls and their vote count, ordered by the most recent vote or creation date
+  $query = '
+    SELECT 
+      p.id, p.question, 
+      p.selection1, p.selection1_count, 
+      p.selection2, p.selection2_count, 
+      p.selection3, p.selection3_count, 
+      p.selection4, p.selection4_count,
+      MAX(v.created_at) AS last_voted
+    FROM polls p
+    LEFT JOIN votes v ON p.id = v.poll_id
+    GROUP BY p.id
+    ORDER BY (MAX(v.created_at) IS NULL), MAX(v.created_at) DESC, p.created_at DESC'; 
+    // Sort by: polls with votes first, then by latest vote, and finally by poll creation date for empty polls
+
   $stmt = $pdo->query($query);
   $polls = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
