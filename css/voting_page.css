@@ -2,7 +2,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  width: 100%;
   padding: 4rem;
 }
 
