@@ -1,5 +1,6 @@
 <?php
-// Load environment variables if using .env (ensure the .env file is properly set up)
+// Load environment variables if using .env (ensure the .env file is properly set up
+
 function loadEnv($path)
 {
   if (!file_exists($path)) {
@@ -37,6 +38,7 @@ try {
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,  // Enable exceptions on errors
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC  // Fetch data as associative arrays
   ]);
+
 } catch (PDOException $e) {
   // Handle connection errors
   die("Database connection failed: " . $e->getMessage());

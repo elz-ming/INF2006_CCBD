@@ -1,4 +1,5 @@
-<?php require 'connect.php'; // Make sure connect.php is correctly set up for your database connection
+<?php
+require_once 'connect.php'; // Make sure connect.php is correctly set up for your database connection
 
 // Fetch poll data from the database
 try {
@@ -22,7 +23,7 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rachel Square</title>
   <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/poll_page.css" />
   <script src="/js/index.js" defer></script>
 </head>
 
@@ -61,8 +62,8 @@ try {
               </div>
             </div>
             <div class="poll-question"><?= htmlspecialchars($poll['question']) ?>
+            </div>
           </div>
-        </div>
         <?php endforeach; ?>
       <?php else: ?>
         <p>No polls available.</p>
@@ -73,18 +74,18 @@ try {
   include('components/footer.php');
   ?>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const pollRows = document.querySelectorAll('.poll-row');
-    pollRows.forEach(function(row) {
-      row.addEventListener('click', function(event) {
-        event.preventDefault();
-        const pollId = this.getAttribute('data-id');
-        window.location.href = `views/voting_page.php?id=${pollId}`;
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const pollRows = document.querySelectorAll('.poll-row');
+      pollRows.forEach(function (row) {
+        row.addEventListener('click', function (event) {
+          event.preventDefault();
+          const pollId = this.getAttribute('data-id');
+          window.location.href = `views/voting_page.php?id=${pollId}`;
+        });
       });
     });
-  });
-</script>
+  </script>
 </body>
 
 </html>
