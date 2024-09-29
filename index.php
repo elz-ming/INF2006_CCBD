@@ -1,4 +1,4 @@
 <?php
-    require 'create_users.php';
-    require 'views/poll_page.php';
+require 'api/create_users.php';
+require 'views/poll_page.php';
 ?>
