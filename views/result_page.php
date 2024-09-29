@@ -2,33 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poll Results</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/result_page.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poll Results</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/result_page.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <?php include '../components/background.php'; ?>
-    <?php include '../components/header.php'; ?>
+  <?php include '../components/background.php'; ?>
+  <?php include '../components/header.php'; ?>
 
-    <h1>Poll Results</h1>
+  <main>
+    <?php
+    $polls = [
+      ['question' => 'Favorite Color?', 'options' => ['Red', 'Blue', 'Green'], 'votes' => [10, 15, 5]],
+      ['question' => 'Best Programming Language?', 'options' => ['PHP', 'JavaScript', 'Python'], 'votes' => [20, 30, 25]],
+      ['question' => 'Favorite Fruit?', 'options' => ['Apple', 'Banana', 'Orange'], 'votes' => [12, 8, 10]],
+      ['question' => 'Preferred IDE?', 'options' => ['VS Code', 'PHPStorm', 'Sublime Text'], 'votes' => [25, 15, 10]]
+    ];
 
-    <div class="charts" style="padding=100px">
-        <?php
-        $polls = [
-            ['question' => 'Favorite Color?', 'options' => ['Red', 'Blue', 'Green'], 'votes' => [10, 15, 5]],
-            ['question' => 'Best Programming Language?', 'options' => ['PHP', 'JavaScript', 'Python'], 'votes' => [20, 30, 25]],
-            ['question' => 'Favorite Fruit?', 'options' => ['Apple', 'Banana', 'Orange'], 'votes' => [12, 8, 10]],
-            ['question' => 'Preferred IDE?', 'options' => ['VS Code', 'PHPStorm', 'Sublime Text'], 'votes' => [25, 15, 10]]
-        ];
-
-        foreach ($polls as $index => $poll) {
-            echo '<h2>' . $poll['question'] . '</h2>';
-            echo '<canvas id="chart' . $index . '"></canvas>';
-            echo '<script>
+    foreach ($polls as $index => $poll) {
+      echo '<h2>' . $poll['question'] . '</h2>';
+      echo '<canvas id="chart' . $index . '"></canvas>';
+      echo '<script>
                 var ctx = document.getElementById("chart' . $index . '").getContext("2d");
                 var chart = new Chart(ctx, {
                     type: "pie",
@@ -44,11 +42,11 @@
                     }
                 });
             </script>';
-        }
-        ?>
-    </div>
-
-    <?php include '../components/footer.php'; ?>
+    }
+    ?>
+  </main>
+  <?php include '../components/footer.php'; ?>
+  <script src="../js/result_page.js"></script>
 </body>
 
 </html>

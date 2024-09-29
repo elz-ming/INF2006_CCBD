@@ -73,19 +73,7 @@ try {
   <?php
   include('components/footer.php');
   ?>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const pollRows = document.querySelectorAll('.poll-row');
-      pollRows.forEach(function (row) {
-        row.addEventListener('click', function (event) {
-          event.preventDefault();
-          const pollId = this.getAttribute('data-id');
-          window.location.href = `views/voting_page.php?id=${pollId}`;
-        });
-      });
-    });
-  </script>
+  <script src="../js/poll_page.js"></script>
 </body>
 
 </html>
