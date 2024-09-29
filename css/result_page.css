@@ -1,21 +1,24 @@
-.charts {
-  width: 30%; /* Adjusted width for better layout */
-  margin: 10px auto;
-  padding-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 polls per row */
   gap: 20px;
-  justify-content: center;
-}
-
-.chart-container {
-  flex: 1 1 calc(50% - 40px); /* Two columns with some gap */
-  max-width: calc(50% - 40px);
-  box-sizing: border-box;
+  max-height: 80vh; /* Maximum height for scrolling */
+  overflow-y: scroll; /* Enable vertical scrolling */
   padding: 20px;
 }
 
-.chart-container canvas {
-  width: 100%;
-  height: auto;
+/* Each poll item */
+.poll-item {
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.poll-item h2 {
+  text-align: center;
+  font-size: 6rem;
 }
