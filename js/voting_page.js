@@ -11,9 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   buttons.forEach(function (button) {
     button.addEventListener("click", function () {
       const answer = this.getAttribute("data-answer");
-
-      console.log(answer);
-
       // Send the selection to the submit_vote.php using fetch
       fetch("/api/submit_vote.php", {
         method: "POST",
