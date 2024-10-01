@@ -42,7 +42,7 @@ footer {
 }
 
 header {
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   top: 0;
   background-color: #ebfcfb;
@@ -64,6 +64,7 @@ footer {
 }
 
 main {
+  width: 100%;
   height: 80vh;
 }
 
@@ -71,20 +72,34 @@ section {
   display: flex;
 }
 
-#title {
-  font-size: 10rem;
-}
-
-#logout {
-  width: 10rem;
-  height: 10rem;
-  font-size: 2rem;
-}
-
-#logout button {
+header button {
   all: unset;
   display: inline-block;
   cursor: pointer;
+}
+
+header #left,
+header #right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+header #center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 8;
+}
+
+header h1 {
+  font-size: 10rem;
+}
+
+header p {
+  font-size: 4rem;
+  font-style: italic;
 }
 
 #footer-title {
