@@ -1,14 +1,10 @@
 <?php
-require_once '../connect.php'; // Make sure connect.php is correctly set up for your database connection
-
-// Fetch poll data from the database
+require_once '../connect.php';
 try {
-  // Example query to fetch polls from the database
   $query = 'SELECT question, selection1, selection1_count, selection2, selection2_count, selection3, selection3_count, selection4, selection4_count FROM polls';
   $stmt = $pdo->query($query);
   $polls = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  // Handle any errors
   echo "Failed to fetch poll data: " . $e->getMessage();
   $polls = []; // Set polls to an empty array if there is an error
 }
