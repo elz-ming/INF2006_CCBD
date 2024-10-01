@@ -33,14 +33,29 @@ try {
       <h2><?= htmlspecialchars($poll['question']) ?></h2>
     </section>
     <section id="answers">
-      <button id="answer-1" class="answer"
-        data-answer="selection1"><?= htmlspecialchars($poll['selection1']) ?></button>
-      <button id="answer-2" class="answer"
-        data-answer="selection2"><?= htmlspecialchars($poll['selection2']) ?></button>
-      <button id="answer-3" class="answer"
-        data-answer="selection3"><?= htmlspecialchars($poll['selection3']) ?></button>
-      <button id="answer-4" class="answer"
-        data-answer="selection4"><?= htmlspecialchars($poll['selection4']) ?></button>
+    <?php if (!is_null($poll['selection1'])): ?>
+    <button id="answer-1" class="answer" data-answer="selection1">
+        <?= htmlspecialchars($poll['selection1']) ?>
+    </button>
+<?php endif; ?>
+
+<?php if (!is_null($poll['selection2'])): ?>
+    <button id="answer-2" class="answer" data-answer="selection2">
+        <?= htmlspecialchars($poll['selection2']) ?>
+    </button>
+<?php endif; ?>
+
+<?php if (!is_null($poll['selection3'])): ?>
+    <button id="answer-3" class="answer" data-answer="selection3">
+        <?= htmlspecialchars($poll['selection3']) ?>
+    </button>
+<?php endif; ?>
+
+<?php if (!is_null($poll['selection4'])): ?>
+    <button id="answer-4" class="answer" data-answer="selection4">
+        <?= htmlspecialchars($poll['selection4']) ?>
+    </button>
+<?php endif; ?>
     </section>
   </main>
   <?php include '../components/footer.php'; ?>
