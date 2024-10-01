@@ -14,6 +14,7 @@
 <body>
 <?php include '../components/background.php'; ?>
 <?php include "../components/header.php"; ?>
+
   <div class="container">
     <div class="form-box box">
       <?php include "../connect.php";
@@ -47,10 +48,13 @@
       } else {
         ?>
   <div class="login-container">
+
         <!-- Login Form -->
         <form id="login-form" action="../api/login.php" method="post">
             <h2>Login</h2>
             <hr>
+            <h3>Login now to start creating polls!</h3>
+
             <div class="form-box">
                 <div class="input-container">
                     <i class="fa fa-envelope fa-5x icon"></i>
@@ -78,10 +82,10 @@
             <h2>Register</h2>
             <hr>
             <div class="form-box">
-                <div class="input-container">
+                <!-- <div class="input-container">
                     <i class="fa fa-user fa-5x icon"></i>
                     <input class="input-field" type="text" placeholder="Username" name="username">
-                </div>
+                </div> -->
                 <div class="input-container">
                     <i class="fa fa-envelope fa-5x icon"></i>
                     <input class="input-field" type="email" placeholder="Email Address" name="email">
