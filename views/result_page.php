@@ -1,14 +1,10 @@
 <?php
-require_once '../connect.php'; // Make sure connect.php is correctly set up for your database connection
-
-// Fetch poll data from the database
+require_once '../connect.php';
 try {
-  // Example query to fetch polls from the database
   $query = 'SELECT question, selection1, selection1_count, selection2, selection2_count, selection3, selection3_count, selection4, selection4_count FROM polls';
   $stmt = $pdo->query($query);
   $polls = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  // Handle any errors
   echo "Failed to fetch poll data: " . $e->getMessage();
   $polls = []; // Set polls to an empty array if there is an error
 }
@@ -46,19 +42,35 @@ try {
       <?php
       foreach ($polls as $index => $poll) {
         // Prepare the labels (selections) and data (counts)
-        $labels = json_encode([
-          $poll['selection1'],
-          $poll['selection2'],
-          isset($poll['selection3']) ? $poll['selection3'] : null,
-          isset($poll['selection4']) ? $poll['selection4'] : null
-        ]);
+        $labels = [];
+        $data = [];
+        $backgroundColor = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"];
+        $colors = [];
 
-        $data = json_encode([
-          $poll['selection1_count'],
-          $poll['selection2_count'],
-          isset($poll['selection3_count']) ? $poll['selection3_count'] : 0,
-          isset($poll['selection4_count']) ? $poll['selection4_count'] : 0
-        ]);
+        if (!is_null($poll['selection1'])) {
+          $labels[] = $poll['selection1'];
+          $data[] = $poll['selection1_count'];
+          $colors[] = $backgroundColor[0];
+        }
+        if (!is_null($poll['selection2'])) {
+          $labels[] = $poll['selection2'];
+          $data[] = $poll['selection2_count'];
+          $colors[] = $backgroundColor[1];
+        }
+        if (!is_null($poll['selection3'])) {
+          $labels[] = $poll['selection3'];
+          $data[] = $poll['selection3_count'];
+          $colors[] = $backgroundColor[2];
+        }
+        if (!is_null($poll['selection4'])) {
+          $labels[] = $poll['selection4'];
+          $data[] = $poll['selection4_count'];
+          $colors[] = $backgroundColor[3];
+        }
+
+        $labels = json_encode($labels);
+        $data = json_encode($data);
+        $colors = json_encode($colors);
 
         echo '
         var ctx' . $index . ' = document.getElementById("chart' . $index . '").getContext("2d");
@@ -68,7 +80,7 @@ try {
             labels: ' . $labels . ',
             datasets: [{
               data: ' . $data . ',
-              backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"]
+              backgroundColor: ' . $colors . '
             }]
           },
           options: {
