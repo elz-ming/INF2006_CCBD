@@ -29,15 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
         // Insert new user into the database
-        $insertQuery = "INSERT INTO admin (email, password_hash) VALUES (:email, :password_hash)";
+        $insertQuery = "INSERT INTO admin (email, password_hash) 
+                VALUES (:email, :password_hash)
+                RETURNING id"; // Return the generated UUID
         $insertStmt = $pdo->prepare($insertQuery);
         $insertStmt->execute([
             'email' => $email,
             'password_hash' => $passwordHash,
         ]);
 
-        // Get the ID of the newly inserted admin
-        $adminId = $pdo->lastInsertId();
+        // Fetch the generated UUID
+		$adminId = $insertStmt->fetchColumn(); // This retrieves the UUID of the inserted row
 
         // Store the admin ID in the session
         $_SESSION['admin_id'] = $adminId; 
