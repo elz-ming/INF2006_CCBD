@@ -1,7 +1,17 @@
 <?php
 require_once '../connect.php';
 try {
-  $query = 'SELECT question, selection1, selection1_count, selection2, selection2_count, selection3, selection3_count, selection4, selection4_count FROM polls';
+  $query = 'SELECT 
+              p.id, p.question, 
+              p.selection1, p.selection1_count, 
+              p.selection2, p.selection2_count, 
+              p.selection3, p.selection3_count, 
+              p.selection4, p.selection4_count,
+              MAX(v.created_at) AS last_voted
+            FROM polls p
+            LEFT JOIN votes v ON p.id = v.poll_id
+            GROUP BY p.id
+            ORDER BY (MAX(v.created_at) IS NULL), MAX(v.created_at) DESC, p.created_at DESC';
   $stmt = $pdo->query($query);
   $polls = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
