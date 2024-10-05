@@ -1,5 +1,47 @@
 <?php require '../connect.php';
 
+$app_key = '5APX793hEJgDmzmB2xCcKI9ybgvYuyFTE8xzj2H7';
+
+function getFunFact($question) {
+  $url = 'https://api.cohere.com/v1/chat';
+
+  $data = array(
+      'model' => 'command-r-08-2024', 
+      "message"=>  "Can you give me a 1-sentence fun fact of the question: " . $question,
+      "preamble"=>  "You are an AI-assistant chatbot. You are trained to assist users by providing thorough and helpful responses to their queries."
+  );
+
+  // Setup cURL
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Authorization: Bearer ' . $GLOBALS['app_key'],
+      'Content-Type: application/json',
+  ));
+
+  $response = curl_exec($ch);
+
+  if (curl_errno($ch)) {
+    echo 'cURL error: ' . curl_error($ch);
+  }
+
+  curl_close($ch);
+  $result = json_decode($response, true);
+
+  if (isset($result['text'])) {
+    return trim($result['text']);
+  } else {
+      return "No fun fact available.";
+  }
+}
+
+
 try {
   $poll_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
@@ -7,16 +49,20 @@ try {
   $stmt = $pdo->prepare($query);
   $stmt->execute(['poll_id' => $poll_id]);
   $poll = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  // Get a fun fact for the poll question
+  $fun_fact = getFunFact($poll['question']);
+
 } catch (PDOException $e) {
   // Handle any errors
   echo "Failed to fetch poll data: " . $e->getMessage();
   $poll = null; // Set poll to null if there is an error
+  $fun_fact = "Unable to generate fun fact.";
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<!-- test -->
 
 <head>
   <meta charset="UTF-8">
@@ -32,6 +78,9 @@ try {
   <main>
     <section id="question">
       <h2><?= htmlspecialchars($poll['question']) ?></h2>
+    </section>
+    <section id="funfact">
+      <p><strong>Fun Fact:</strong> <?= htmlspecialchars($fun_fact) ?></p>
     </section>
     <section id="answers">
     <?php if (!is_null($poll['selection1'])): ?>
