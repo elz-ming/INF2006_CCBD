@@ -17,36 +17,7 @@
 
   <div class="container">
     <div class="form-box box">
-      <?php include "../connect.php";
-      if (isset($_POST['login'])) {
-        $email = $_POST['email'];
-        $pass = $_POST['password'];
-        $sql = "select * from users where email='$email'";
-        $res = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($res) > 0) {
-          $row = mysqli_fetch_assoc($res);
-          $password = $row['password'];
-          $decrypt = password_verify($pass, $password);
-
-          if ($decrypt) {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['username'] = $row['username'];
-            header("location: home.php");
-          } else {
-            echo "<div class='message'>
-                    <p>Wrong Password</p>
-                    </div><br>";
-            echo "<a href='login.php'><button class='btn'>Go Back</button></a>";
-          }
-        } else {
-          echo "<div class='message'>
-                    <p>Wrong Email or Password</p>
-                    </div><br>";
-          echo "<a href='login.php'><button class='btn'>Go Back</button></a>";
-        }
-      } else {
-        ?>
+      
   <div class="login-container">
 
         <!-- Login Form -->
@@ -102,7 +73,6 @@
             </div>
         </form>
     </div>
-      <?php } ?>
   </div>
     <script src= "../js/login_page.js"></script>
     <?php include('../components/footer.php');?>

@@ -1,43 +1,49 @@
 <?php
+require_once '../connect.php'; // Ensure this includes your database connection
+session_start();
 
-require_once '../connect.php';
+header('Content-Type: application/json'); // Ensure JSON response
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST['title'];
-    $answer1 = $_POST['answer1'] ?? '';
-    $answer2 = $_POST['answer2'] ?? '';
-    $answer3 = $_POST['answer3'] ?? '';
-    $answer4 = $_POST['answer4'] ?? '';
+// Check if the admin is logged in
+if (!isset($_SESSION['admin_id'])) {
+    echo json_encode(['success' => false, 'error' => 'Unauthorized: Admin not logged in.']);
+    exit(); // Ensure no further code is executed
+}
 
-    // Validate form data
-    if (empty($title) || empty($answer1) || empty($answer2)) {
-        echo "At least question field 1 and 2 are required.";
-        exit;
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        // Get the poll title and selections from the POST request
+        $title = $_POST['title'] ?? '';
+        $question1 = $_POST['answer1'] ?? '';
+        $question2 = $_POST['answer2'] ?? '';
+        $question3 = $_POST['answer3'] ?? '';
+        $question4 = $_POST['answer4'] ?? '';
 
-    // Prepare the SQL query
-    $sql = "INSERT INTO polls (question, selection1, selection2, selection3, selection4) VALUES (?, ?, ?, ?, ?)";
-
-    // Initialize the statement
-    if ($stmt = $conn->prepare($sql)) {
-        // Bind the parameters
-        $stmt->bind_param("sssss", $title, $answer1, $answer2, $answer3, $answer4);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            echo "New poll created successfully.";
-        } else {
-            echo "Error: " . $stmt->error;
+        // Validate input (you can add more robust validation)
+        if (empty($title) || empty($question1) || empty($question2)) {
+            throw new Exception("Poll title, Question 1, and Question 2 are required.");
         }
 
-        // Close the statement
-        $stmt->close();
-    } else {
-        echo "Error: " . $conn->error;
-    }
+        // Prepare the insert query
+        $insertQuery = "INSERT INTO polls (question, selection1, selection2, selection3, selection4) 
+                        VALUES (:title, :selection1, :selection2, :selection3, :selection4)";
+        $insertStmt = $pdo->prepare($insertQuery);
+        $insertStmt->execute([
+            'title' => $title,
+            'selection1' => $question1,
+            'selection2' => $question2,
+            'selection3' => $question3,
+            'selection4' => $question4,
+        ]);
 
-    // Close the connection
-    $conn->close();
+        // Successful insert
+        echo json_encode(['success' => true, 'message' => 'Poll created successfully.']);
+    } catch (Exception $e) {
+        // Return error response
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    }
+} else {
+    // Return an error if the request is not POST
+    echo json_encode(['success' => false, 'error' => 'Invalid request method. Only POST is allowed.']);
 }
 ?>
