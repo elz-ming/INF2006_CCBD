@@ -19,14 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Add event listener to the search button
   searchButton.addEventListener("click", function () {
     const inputId = searchInput.value.trim();
-
     if (inputId) {
       let pollFound = false;
-
       pollRows.forEach(function (row) {
         const pollId = row.getAttribute("data-id");
 
-        if (pollId === inputId) {
+        if (pollId && pollId === inputId) {
           pollFound = true;
           window.location.href = `views/voting_page.php?id=${pollId}`;
         }
