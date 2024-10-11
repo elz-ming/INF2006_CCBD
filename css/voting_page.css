@@ -21,7 +21,7 @@ section {
 }
 
 #question h2 {
-  font-size: 20rem;
+  font-size: 16rem;
   color: #ebfcfb;
 }
 
@@ -31,7 +31,7 @@ section {
   align-items: center;
   width: 60%; /* Set a smaller width */
   height: 30vh; /* Reduce the height */
-  background-color: #141204;
+  background-color: #ea738d;
   border-radius: 2rem; /* Smaller border radius */
   border: 5px solid #ebfcfb;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.25);
@@ -40,13 +40,11 @@ section {
 }
 
 #funfact p {
-  font-size: 16px; /* Reduce the font size */
-  color: #ebfcfb;
+  font-size: 4rem; /* Reduce the font size */
+  color: #141204;
   text-align: center; /* Center the text */
   word-wrap: break-word; /* Ensure text wraps inside the box */
-  margin: 0;
 }
-
 
 #answers {
   flex: 1;
@@ -56,7 +54,8 @@ section {
 
 .answer {
   flex: 1;
-  font-size: 8rem;
+  height: 20rem;
+  font-size: 6rem;
   color: #141204;
   border-radius: 30px;
   border: none;
